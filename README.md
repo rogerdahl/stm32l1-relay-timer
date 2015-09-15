@@ -8,11 +8,9 @@ This is the program for this contraption:
 
 The program switches 2 relays alternately on and off with a period of overlap where both relays are on. Only 2 of the 4 relays are in use. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be enabled and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. 
 
-Pressing the USER button once causes both relays to turn on and pressing it again causes both relays to turn off. In both cases, the device to remain in that state until Reset or one of the two custom buttons is pressed.
+Pressing the USER button once causes both relays to turn on and pressing it again causes both relays to turn off. In both cases, the device remains in that state until Reset or one of the two custom buttons is pressed.
 
-Pressing the left custom button causes the device to go directly to the state where relay 1 and the green LED are on.
-
-Pressing the right custom button causes the device to go directly to the state where relay 2 and the blue LED are on.
+Pressing the left and right custom buttons causes relay 1 or relay 2 to be enabled and normal cycling to resume.
 
 #### Wiring
 
