@@ -546,8 +546,12 @@ volatile enum STATE prev_state = RESET_STATE;
 void EXTI0_IRQHandler(void)
 {
   prev_state = RESET_STATE;
-  state = BOTH_ON;
-  display_time();
+  if (state == BOTH_ON) {
+    state = BOTH_OFF;
+  }
+  else {
+    state = BOTH_ON;
+  }
   EXTI_ClearITPendingBit(EXTI_Line0);
 }
 
@@ -556,7 +560,6 @@ void EXTI4_IRQHandler(void)
 {
   prev_state = RESET_STATE;
   state = LEFT;
-  display_time();
   EXTI_ClearITPendingBit(EXTI_Line4);
 }
 
@@ -565,7 +568,6 @@ void EXTI2_IRQHandler(void)
 {
   prev_state = RESET_STATE;
   state = RIGHT;
-  display_time();
   EXTI_ClearITPendingBit(EXTI_Line2);
 }
 
@@ -818,6 +820,7 @@ int main(void)
           relay_2_off();
           relay_3_off();
           relay_4_off();
+          set_sec(0);
           
           state = RIGHT;
           break;

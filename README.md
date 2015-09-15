@@ -6,18 +6,9 @@ This is the program for this contraption:
 
 ![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer.jpg)
 
-The program cycles through the following states:
+The program switches 2 relays alternately on and off with a period of overlap where both relays are on. Only 2 of the 4 relays are in use. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be enabled and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. 
 
-* relay 1 on, relay 2 off, blue LED on, green LED off
-* relay 1 on, relay 2 on, blue LED on, green LED flashing
-* relay 1 off, relay 2 on, blue LED off, green LED on
-* relay 2 off, relay 2 off, blue LED flashing, green LED on
-
-In other words, the LEDs indicate which relay is on and if a switch will soon happen. While a LED is flashing, both relays are on.
-
-The time to stay in each state is configurable and the remaining time for the current state is displayed on the LCD.
-
-Pressing the USER button causes both relays to turn on and the device to remain in that state until Reset or one of the two custom buttons is pressed.
+Pressing the USER button once causes both relays to turn on and pressing it again causes both relays to turn off. In both cases, the device to remain in that state until Reset or one of the two custom buttons is pressed.
 
 Pressing the left custom button causes the device to go directly to the state where relay 1 and the green LED are on.
 
@@ -41,6 +32,13 @@ The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. 
 #### Implementation
 
 RTC interrupts are used for decreasing the time every second. The time is stored in seconds in a volatile variable that gets updated by the RTC interrupt. In main, a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons are pressed.
+
+The program cycles through the following states:
+
+* relay 1 on, relay 2 off, blue LED on, green LED off
+* relay 1 on, relay 2 on, blue LED on, green LED flashing
+* relay 1 off, relay 2 on, blue LED off, green LED on
+* relay 2 off, relay 2 off, blue LED flashing, green LED on
 
 The touch slider / 4 touch buttons are not used.
 
