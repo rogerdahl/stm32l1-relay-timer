@@ -1,8 +1,6 @@
-### Simple relay control for the STM32L-DISCOVERY and 32L152CDISCOVERY boards
+### Simple relay control for the [STM32L-DISCOVERY and 32L152CDISCOVERY boards](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/data_brief/DM00027566.pdf)
 
-http://www.st.com/st-web-ui/static/active/en/resource/technical/document/data_brief/DM00027566.pdf
-
-This a the program for this contraption:
+This a program for this contraption:
 
 ![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer.jpg)
 
