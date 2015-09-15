@@ -38,6 +38,12 @@ For the left button to work, the SB2 solder bridge on the board must be removed.
 
 The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. There are also boards without optocouplers available. I'm not sure if those will work, since the STM32L1 drives the relays with 3.3V.
 
+#### Implementation
+
+RTC interrupts are used for decreasing the time every second. The time is stored in seconds in a volatile variable that gets updated by the RTC interrupt. In main, a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons are pressed.
+
+The touch slider / 4 touch buttons are not used.
+
 #### Build and Flash
 
 This project is based on:
