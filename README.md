@@ -2,9 +2,15 @@
 
 http://www.st.com/st-web-ui/static/active/en/resource/technical/document/data_brief/DM00027566.pdf
 
-This is the program for this contraption:
+This a the program for this contraption:
 
 ![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer.jpg)
+
+![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer-side.jpg)
+
+The STM32L board was soldered onto a breadboard since it doesn't have mounting holes. The breadboard and the relay board were mounted onto a piece of plywood with threw hole machine screws with vinyl spacers and nuts on the back. The cables are clamped onto the board at the back to handle mechanical stress.
+
+The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. There are also boards without optocouplers available. I'm not sure if those will work, since the STM32L1 drives the relays with 3.3V.
 
 The program switches 2 relays alternately on and off with a period of overlap where both relays are on. Only 2 of the 4 relays are in use. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be enabled and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. 
 
@@ -24,8 +30,6 @@ Pressing the left and right custom buttons causes relay 1 or relay 2 to be enabl
 * Right button: PD2
 
 For the left button to work, the SB2 solder bridge on the board must be removed.
-
-The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. There are also boards without optocouplers available. I'm not sure if those will work, since the STM32L1 drives the relays with 3.3V.
 
 #### Implementation
 
