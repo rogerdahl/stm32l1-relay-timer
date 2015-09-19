@@ -22,14 +22,20 @@ The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. 
 
 #### Wiring
 
-* Relay 5V: Discovery 5V
-* Relay GND: Discovery GND
-* Relay 1: PA5
-* Relay 2: PA11
-* Relay 3: PA12
-* Relay 3: PC12
-* Left button: PA4
-* Right button: PD2
+| STM32L1 | Relay |
+|:--------|:------|
+| EXT_5V  | VCC   |
+| GND     | GND   |
+| PA5     | IN1   |
+| PA11    | IN2   |
+| PA12    | IN3   |
+| PC12    | IN4   |
+
+| STM32L1 | Button |
+|:--------|:------|
+| PA4     | Left  |
+| PD2     | Right |
+
 
 For the left button to work, the SB2 solder bridge on the board must be removed.
 
