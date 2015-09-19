@@ -49,7 +49,7 @@ The program cycles through the following states:
 | on      | off     | on       | off       |
 | on      | on      | on       | flashing  |
 | off     | on      | off      | on        |
-| off     | off     | flashing | on        |
+| on      | on      | flashing | on        |
 
 The touch slider / 4 touch buttons are not used.
 
