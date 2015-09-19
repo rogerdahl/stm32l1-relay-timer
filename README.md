@@ -36,7 +36,6 @@ The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. 
 | PA4     | Left  |
 | PD2     | Right |
 
-
 For the left button to work, the SB2 solder bridge on the board must be removed.
 
 #### Implementation
@@ -45,10 +44,12 @@ RTC interrupts are used for decreasing the time every second. The time is stored
 
 The program cycles through the following states:
 
-* relay 1 on, relay 2 off, blue LED on, green LED off
-* relay 1 on, relay 2 on, blue LED on, green LED flashing
-* relay 1 off, relay 2 on, blue LED off, green LED on
-* relay 2 off, relay 2 off, blue LED flashing, green LED on
+| Relay 1 | Relay 2 | Blue LED | Green LED |
+|---------|---------|----------|-----------|
+| on      | off     | on       | off       |
+| on      | on      | on       | flashing  |
+| off     | on      | off      | on        |
+| off     | off     | flashing | on        |
 
 The touch slider / 4 touch buttons are not used.
 
