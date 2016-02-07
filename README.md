@@ -14,7 +14,7 @@ Touching the left or right capacitive buttons causes relay 1 or 2 to be switched
 
 #### Hardware
 
-The STM32L152 Discovery board was soldered onto a breadboard since it doesn't have mounting holes. The breadboard and relay boards were mounted onto a piece of plywood with machine screws with vinyl spacers and nuts on the back. The cables were clamped onto the board at the back to handle mechanical stress.
+The STM32L152 Discovery board was soldered onto a breadboard since it doesn't have mounting holes. The breadboard and relay boards were mounted onto a piece of plywood with machine screws, using vinyl spacers and nuts on the back. The cables were clamped onto the board at the back to handle mechanical stress.
 
 The relay module is a 5V, 4 channel module with optocouplers from eBay. There are also boards without optocouplers available. Note that the relay module must handle the 3.3V signal level of the STM32L1 unless level shifters are used.
 
@@ -37,8 +37,8 @@ This project is based on:
 
 https://github.com/rogerdahl/stm32l-discovery-timer-template
 
-The time is stored in seconds in a volatile variable that gets updated by an interrupt that is triggered every second. In main(), a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons are pressed.
+The time is stored in seconds in a volatile variable that gets updated by an interrupt that is triggered every second. In main(), a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons is pressed.
 
 #### Build and Flash
 
-Start with getting getting the template project working by following the instructions there. Then replace `main.c` with the one from this project.
+Start with getting the template project working by following the instructions there. Then replace `main.c` with the one from this project.
