@@ -1,4 +1,4 @@
-### Simple relay control for the [STM32L-DISCOVERY and 32L152CDISCOVERY boards](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/data_brief/DM00027566.pdf)
+### Simple relay control for the [STM32L-DISCOVERY and 32L152CDISCOVERY](http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF250990?sc=internet/evalboard/product/250990.jsp) boards.
 
 This is firmware for this contraption:
 
@@ -8,17 +8,15 @@ This is firmware for this contraption:
 
 #### Firmware
 
-The program switches 2 relays alternately on and off with a period of overlap where both relays are on. Only 2 of the 4 relays are in use. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be enabled and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. 
+The program switches relay 1 and 2 alternately on and off with a period of overlap where both relays are on. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be on and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. During the last few seconds before a switch, relay 4 is toggled to provide an audible indication. Relay 3 is not in use.  
 
-Pressing the USER button once causes both relays to turn on and pressing it again causes both relays to turn off. In both cases, the device remains in that state until Reset or one of the two custom buttons is pressed.
-
-Pressing the left and right custom buttons causes relay 1 or relay 2 to be enabled and normal cycling to resume.
+Touching the left or right capacitive buttons causes relay 1 or 2 to be switched on and normal cycling to resume. Touching one of the center capacitive buttons causes a pause before normal cycling resumes. Pressing the User button switches both relays off and pressing it again switches both relays on. When relays are switched off with the User button, operations are halted until the left or right capacitive button is touched. When relays are switched on with the User button, operations are resumed after a configurable period.
 
 #### Hardware
 
-The STM32L board was soldered onto a breadboard since it doesn't have mounting holes. The breadboard and the relay board were mounted onto a piece of plywood with through-hole machine screws with vinyl spacers and nuts on the back. The cables were clamped onto the board at the back to handle mechanical stress.
+The STM32L152 Discovery board was soldered onto a breadboard since it doesn't have mounting holes. The breadboard and relay boards were mounted onto a piece of plywood with machine screws with vinyl spacers and nuts on the back. The cables were clamped onto the board at the back to handle mechanical stress.
 
-The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. There are also boards without optocouplers available. I'm not sure if those will work, since the STM32L1 drives the relays with 3.3V.
+The relay module is a 5V, 4 channel module with optocouplers from eBay. There are also boards without optocouplers available. Note that the relay module must handle the 3.3V signal level of the STM32L1 unless level shifters are used.
 
 #### Wiring
 
@@ -31,32 +29,16 @@ The relay module is a 5V, 4 channel module with optocouplers purchased on eBay. 
 | PA12    | IN3   |
 | PC12    | IN4   |
 
-| STM32L1 | Button |
-|:--------|:------|
-| PA4     | Left  |
-| PD2     | Right |
-
-For the left button to work, the SB2 solder bridge on the board must be removed.
+The User button will not work correctly unless solder bridges are removed as detailed in the template project (see below).
 
 #### Implementation
 
-RTC interrupts are used for decreasing the time every second. The time is stored in seconds in a volatile variable that gets updated by the RTC interrupt. In main, a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons are pressed.
+This project is based on:
 
-The program cycles through the following states:
+https://github.com/rogerdahl/stm32l-discovery-timer-template
 
-| Relay 1 | Relay 2 | Blue LED | Green LED |
-|---------|---------|----------|-----------|
-| on      | off     | on       | off       |
-| on      | on      | on       | flashing  |
-| off     | on      | off      | on        |
-| on      | on      | flashing | on        |
-
-The touch slider / 4 touch buttons are not used.
+The time is stored in seconds in a volatile variable that gets updated by an interrupt that is triggered every second. In main(), a simple state machine runs in a tight loop. State switches occur when the time countdown reaches zero or when one of the buttons are pressed.
 
 #### Build and Flash
 
-This project is based on:
-
-https://github.com/rogerdahl/stm32l-discovery-egg-timer
-
-Start with getting that project working using the instructions there. Then replace `main.c` with the one from this project.
+Start with getting getting the template project working by following the instructions there. Then replace `main.c` with the one from this project.
