@@ -4,8 +4,6 @@ This is firmware for this contraption:
 
 ![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer.jpg)
 
-![](https://github.com/rogerdahl/stm32l1-relay-timer/blob/master/relay-timer-side.jpg)
-
 #### Firmware
 
 The program switches relay 1 and 2 alternately on and off with a period of overlap where both relays are on. The LEDs indicate active relay and, in the period of overlap, which relay will become active. The amount of time for each relay to be on and for the overlap period is configured in the code. The remaining time for the current state is counted down on the LCD. During the last few seconds before a switch, relay 4 is toggled to provide an audible indication. Relay 3 is not in use.  
